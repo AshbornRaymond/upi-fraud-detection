@@ -412,15 +412,4 @@ For questions or issues:
 
 This project is for educational purposes. Feel free to learn from it, modify it, and share it!
 
-## 🎓 Learning Resources
-
-To understand this project better:
-
-- **FastAPI**: https://fastapi.tiangolo.com/
-- **Machine Learning Basics**: https://www.coursera.org/learn/machine-learning
-- **XGBoost**: https://xgboost.readthedocs.io/
-- **Web Development**: https://developer.mozilla.org/
-
----
-
 **Made by students, for learning about fraud detection and machine learning! 🚀**
