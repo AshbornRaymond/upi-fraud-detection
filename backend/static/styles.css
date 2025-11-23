@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent System For UPI Fraud Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #2e5432 50%, #39634f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            color: #6b7280;
+            transition: all 0.2s;
+            position: relative;
+            margin-bottom: -2px;
+        }
+        
+        .tab-btn:hover {
+            color: #374151;
+        }
+        
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+        
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3f8642 0%, #18311f 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        button[type="submit"]:hover {
+            opacity: 0.9;
+        }
+        
+        #loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        #result {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .result-box {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .verdict {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .verdict-icon {
+            font-size: 40px;
+        }
+        
+        .verdict-text {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .score-bar {
+            background: #e5e7eb;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .score-fill {
+            height: 100%;
+            transition: width 0.5s;
+        }
+        
+        .details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .details ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .details li {
+            padding: 5px 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .meta-info {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ UPI Fraud Detection</h1>
+            <p>Real-time fraud detection for UPI transactions</p>
+        </div>
+        
+        <div class="status" id="healthStatus">Connecting...</div>
+        
+        <div class="card">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="link">🔗 Link</button>
+                <button class="tab-btn" data-tab="vpa">💳 VPA</button>
+                <button class="tab-btn" data-tab="message">💬 Message</button>
+                <button class="tab-btn" data-tab="qr">📱 QR Code</button>
+            </div>
+            
+            <!-- Link Tab -->
+            <div id="linkTab" class="tab-content active">
+                <form id="linkForm">
+                    <div class="form-group">
+                        <label>Enter URL to validate:</label>
+                        <input type="text" id="linkInput" placeholder="https://example.com" required>
+                    </div>
+                    <button type="submit">🔍 Validate Link</button>
+                </form>
+            </div>
+            
+            <!-- VPA Tab -->
+            <div id="vpaTab" class="tab-content">
+                <form id="vpaForm">
+                    <div class="form-group">
+                        <label>Enter UPI VPA:</label>
+                        <input type="text" id="vpaInput" placeholder="username@bank" required>
+                    </div>
+                    <button type="submit">🔍 Validate VPA</button>
+                </form>
+            </div>
+            
+            <!-- Message Tab -->
+            <div id="messageTab" class="tab-content">
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label>Enter SMS/Message:</label>
+                        <textarea id="messageInput" placeholder="Paste your message here..." required></textarea>
+                    </div>
+                    <button type="submit">🔍 Validate Message</button>
+                </form>
+            </div>
+            
+            <!-- QR Tab -->
+            <div id="qrTab" class="tab-content">
+                <form id="qrForm">
+                    <div class="form-group">
+                        <label>Upload QR Code Image:</label>
+                        <input type="file" id="qrInput" accept="image/*" required>
+                    </div>
+                    <button type="submit">🔍 Validate QR Code</button>
+                </form>
+            </div>
+            
+            <div id="loading">
+                <div style="font-size: 24px; margin-bottom: 8px;">⏳</div>
+                Analyzing...
+            </div>
+            
+            <div id="result"></div>
+        </div>
+    </div>
+    
+    <script src="/static/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# UPI Fraud Detection System - Required Python Packages
+# Install with: pip install -r requirements.txt
+
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Machine Learning
+scikit-learn==1.3.2
+xgboost==2.0.2
+pandas==2.1.3
+numpy==1.26.2
+joblib==1.3.2
+
+# QR Code Processing
+Pillow==10.1.0
+pyzbar==0.1.9
+
+# Web Scraping & Browser Automation
+requests==2.31.0
+playwright==1.40.0
+beautifulsoup4==4.12.2
+
+# URL Parsing & Network
+tldextract==5.1.0
+urllib3==2.1.0
+
+# Utilities
+python-dotenv==1.0.0

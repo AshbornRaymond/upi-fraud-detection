@@ -1,0 +1,63 @@
+{
+  "feature_list": [
+    "domain_age_days",
+    "tld_risk",
+    "url_length",
+    "subdomain_depth",
+    "brand_lev_distance",
+    "ssl_valid",
+    "is_http",
+    "query_entropy",
+    "redirect_count",
+    "kw_kyc",
+    "kw_verify",
+    "kw_bonus",
+    "upi_intent_pay",
+    "upi_intent_collect",
+    "upi_pa_present",
+    "upi_am_present",
+    "upi_amount",
+    "vpa_format_valid",
+    "vpa_provider_allow",
+    "vpa_entropy",
+    "qr_present",
+    "qr_param_missing_count",
+    "qr_from_shortener",
+    "log_domain_age_days",
+    "log_upi_amount",
+    "log_url_length",
+    "log_query_entropy",
+    "is_new_domain_30",
+    "is_new_domain_60",
+    "risky_tld_flag",
+    "brand_impersonation",
+    "long_url_flag",
+    "deep_subdomain_flag",
+    "http_or_bad_ssl",
+    "has_kyc_or_verify",
+    "small_amount_verification",
+    "pay_intent_no_collect",
+    "kyc_on_new_domain"
+  ],
+  "ensemble": {
+    "w_link": 0.85,
+    "t_block": 0.7,
+    "t_ok": 0.4
+  },
+  "val_metrics": {
+    "safety_view": {
+      "precision": 0.6572023964574107,
+      "recall": 0.8670103092783505,
+      "f1": 0.747666320936435
+    },
+    "strict_view": {
+      "precision": 0.7876447876447876,
+      "recall": 0.42061855670103093,
+      "f1": 0.5483870967741935
+    },
+    "auc": 0.7086958022986238,
+    "warn_rate": 0.457,
+    "block_rate": 0.3108
+  },
+  "label_encoding": "1=fraud, 0=legitimate (inverted during training)"
+}

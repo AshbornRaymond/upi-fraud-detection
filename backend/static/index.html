@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent System For UPI Fraud Detection</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Intelligent System For UPI Fraud Detection</h1>
+            <p>Real-time fraud detection for UPI transactions</p>
+        </div>
+        
+        <div class="status" id="healthStatus">Connecting...</div>
+        
+        <div class="card">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="link">🔗 Link</button>
+                <button class="tab-btn" data-tab="vpa">💳 VPA</button>
+                <button class="tab-btn" data-tab="message">💬 Message</button>
+                <button class="tab-btn" data-tab="qr">📱 QR Code</button>
+            </div>
+            
+            <!-- Link Tab -->
+            <div id="linkTab" class="tab-content active">
+                <form id="linkForm">
+                    <div class="form-group">
+                        <label>Enter URL to validate:</label>
+                        <input type="text" id="linkInput" placeholder="https://example.com" required>
+                    </div>
+                    <button type="submit">🔍 Validate Link</button>
+                </form>
+            </div>
+            
+            <!-- VPA Tab -->
+            <div id="vpaTab" class="tab-content">
+                <form id="vpaForm">
+                    <div class="form-group">
+                        <label>Enter UPI VPA:</label>
+                        <input type="text" id="vpaInput" placeholder="username@bank" required>
+                    </div>
+                    <button type="submit">🔍 Validate VPA</button>
+                </form>
+            </div>
+            
+            <!-- Message Tab -->
+            <div id="messageTab" class="tab-content">
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label>Enter SMS/Message:</label>
+                        <textarea id="messageInput" placeholder="Paste your message here..." required></textarea>
+                    </div>
+                    <button type="submit">🔍 Validate Message</button>
+                </form>
+            </div>
+            
+            <!-- QR Tab -->
+            <div id="qrTab" class="tab-content">
+                <form id="qrForm">
+                    <div class="form-group">
+                        <label>Upload QR Code Image:</label>
+                        <input type="file" id="qrInput" accept="image/*" required>
+                    </div>
+                    <button type="submit">🔍 Validate QR Code</button>
+                </form>
+            </div>
+            
+            <div id="loading">
+                <div style="font-size: 24px; margin-bottom: 8px;">⏳</div>
+                Analyzing...
+            </div>
+            
+            <div id="result"></div>
+        </div>
+    </div>
+    
+    <script src="/static/main.js?v=2"></script>
+</body>
+</html>
