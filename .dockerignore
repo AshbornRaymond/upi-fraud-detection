@@ -5,8 +5,15 @@ __pycache__
 .Python
 env/
 venv/
+.venv/
 .env
 .git
 .gitignore
 *.md
 data/
+.pytest_cache
+.vscode
+*.log
+render.yaml
+Procfile
+runtime.txt

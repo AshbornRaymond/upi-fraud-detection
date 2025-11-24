@@ -19,8 +19,8 @@ pyzbar>=0.1.9
 
 # Web Scraping & Browser Automation
 requests==2.31.0
-playwright==1.40.0
 beautifulsoup4==4.12.2
+# playwright==1.40.0  # Disabled for Render deployment - Stage 2 validation unavailable
 
 # URL Parsing & Network
 tldextract==5.1.0
