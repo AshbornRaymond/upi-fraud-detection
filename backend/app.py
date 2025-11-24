@@ -12,7 +12,7 @@ import logging  # For tracking what's happening in the application
 from pathlib import Path  # For working with file paths in a clean way
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form  # Web framework components
 from fastapi.staticfiles import StaticFiles  # For serving HTML/CSS/JS files
-from fastapi.responses import JSONResponse  # For sending JSON responses
+from fastapi.responses import JSONResponse, RedirectResponse  # For sending JSON responses
 from fastapi.middleware.cors import CORSMiddleware  # For handling cross-origin requests
 
 # Setup paths - figure out where the project root directory is
@@ -57,6 +57,13 @@ app.add_middleware(
 # This makes the web interface accessible through the server
 static_path = Path(__file__).parent / "static"
 app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
+
+@app.get("/")
+async def root():
+    """
+    Root endpoint - redirects to the main web interface
+    """
+    return RedirectResponse(url="/static/index.html")
 
 @app.get("/health")
 async def health():
