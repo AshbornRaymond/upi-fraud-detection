@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:8008';
+
+// Use relative URL for production, localhost for development
+//const API_URL = 'http://localhost:5000';
+const API_URL = window.location.origin;
 const version = 'v1.0';
 
 window.addEventListener('DOMContentLoaded', () => {
