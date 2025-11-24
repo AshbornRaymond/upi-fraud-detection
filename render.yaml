@@ -2,7 +2,7 @@ services:
   - type: web
     name: upi-fraud-detection
     runtime: python
-    buildCommand: pip install --upgrade pip && pip install -r requirements.txt && playwright install chromium --with-deps
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt && playwright install chromium
     startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
