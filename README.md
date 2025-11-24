@@ -85,7 +85,7 @@ Before you begin, make sure you have:
 
 2. **Navigate to the project directory**:
    ```bash
-   cd "d:\major project ultra pro max\major project"
+   cd "d:\upi-fraud-detection"
    ```
 
 3. **Install required Python packages**:
@@ -411,16 +411,5 @@ For questions or issues:
 ## 📄 License
 
 This project is for educational purposes. Feel free to learn from it, modify it, and share it!
-
-## 🎓 Learning Resources
-
-To understand this project better:
-
-- **FastAPI**: https://fastapi.tiangolo.com/
-- **Machine Learning Basics**: https://www.coursera.org/learn/machine-learning
-- **XGBoost**: https://xgboost.readthedocs.io/
-- **Web Development**: https://developer.mozilla.org/
-
----
 
 **Made by students, for learning about fraud detection and machine learning! 🚀**
